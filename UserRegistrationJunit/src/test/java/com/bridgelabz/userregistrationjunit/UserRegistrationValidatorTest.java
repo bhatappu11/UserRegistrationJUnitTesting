@@ -1,9 +1,25 @@
 package com.bridgelabz.userregistrationjunit;
 
-import org.junit.Test;
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+import java.util.Arrays;
+import java.util.Collection;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+@RunWith(Parameterized.class)
 public class UserRegistrationValidatorTest {
+	private String email;
+	private boolean expectedOutput;
+		
+	public UserRegistrationValidatorTest(String email, boolean expectedOutput) {
+		this.email = email;
+		this.expectedOutput = expectedOutput;
+	}
+
 	@Test
 	public void givenFirstName_WhenProper_ShouldReturnTrue() {
 		UserRegistrationValidator validator = new UserRegistrationValidator();	
@@ -45,17 +61,10 @@ public class UserRegistrationValidatorTest {
 		Assert.assertFalse(result);
 	}
 	@Test
-	public void givenEmail_WhenProper_ShouldReturnTrue() {
-		UserRegistrationValidator validator = new UserRegistrationValidator();	
-		boolean result = validator.checkEmail("arpitha-bhat11@gmail.co.in");
-		Assert.assertTrue(result);
-	}
-	
-	@Test
-	public void givenEmail_WhenNotProper_ShouldReturnFalse() {
-		UserRegistrationValidator validator = new UserRegistrationValidator();	
-		boolean result = validator.checkEmail("1abc?@gmail.com");
-		Assert.assertFalse(result);
+	public void givenEmail_WhenValidOrInvalidEmailInput_ShouldReturnTrueOrFalse() {
+		UserRegistrationValidator userRegistration = new UserRegistrationValidator();
+	   	boolean result = userRegistration.checkEmail(email);
+	   	Assert.assertEquals(expectedOutput,result);
 	}
 	@Test
 	public void givenMobileNumber_WhenProper_ShouldReturnTrue() {
@@ -125,4 +134,13 @@ public class UserRegistrationValidatorTest {
 		boolean result = validator.checkPassword("Poll@123$123");
 		Assert.assertFalse(result);
 	}
+	@Parameterized.Parameters
+	public static Collection input() {
+		return Arrays.asList(new Object[][] { { "abc@yahoo.com",true }, { "abc-100@yahoo.com",true }, { "abc.100@yahoo.com",true },
+					{ "abc111@abc.com",true }, { "abc-100@abc.net",true }, { "abc.100@abc.com.au",true }, { "abc@1.com",true },
+					{ "abc@gmail.com.com",true }, { "abc+100@gmail.com",true }, { "abc",false }, { "abc@.com.my",false }, { "abc123@gmail.a",false },
+					{ "abc123@.com",false }, { "abc123@.com.com",false }, { ".abc@abc.com",false }, { "abc()*@gmail.com",false }, { "abc@%*.com",false },
+					{ "abc..2002@gmail.com",false }, { "abc.@gmail.com",false }, { "abc@abc@gmail.com",false }, { "abc@gmail.com.1a",false },
+					{ "abc@gmail.com.aa.au",false } });
+		}
 }
