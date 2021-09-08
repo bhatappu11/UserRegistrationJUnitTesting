@@ -44,4 +44,17 @@ public class UserRegistrationValidatorTest {
 		boolean result = validator.checkLastName("bhat");
 		Assert.assertFalse(result);
 	}
+	@Test
+	public void givenEmail_WhenProper_ShouldReturnTrue() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result = validator.checkEmail("arpitha-bhat11@gmail.co.in");
+		Assert.assertTrue(result);
+	}
+	
+	@Test
+	public void givenEmail_WhenNotProper_ShouldReturnFalse() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result = validator.checkEmail("1abc?@gmail.com");
+		Assert.assertFalse(result);
+	}
 }
