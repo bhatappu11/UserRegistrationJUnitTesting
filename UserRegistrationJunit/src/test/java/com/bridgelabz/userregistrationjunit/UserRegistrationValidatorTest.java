@@ -24,4 +24,24 @@ public class UserRegistrationValidatorTest {
 		boolean result = validator.checkFirstName("arpitha");
 		Assert.assertFalse(result);
 	}
+	@Test
+	public void givenLastName_WhenProper_ShouldReturnTrue() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result = validator.checkLastName("Bhat");
+		Assert.assertTrue(result);
+	}
+	
+	@Test
+	public void givenLastName_WhenShort_ShouldReturnFalse() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result = validator.checkLastName("Bh");
+		Assert.assertFalse(result);
+	}
+	
+	@Test
+	public void givenLastName_WhenUpperCaseMissing_ShouldReturnFalse() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result = validator.checkLastName("bhat");
+		Assert.assertFalse(result);
+	}
 }
