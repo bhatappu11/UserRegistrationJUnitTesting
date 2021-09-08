@@ -84,4 +84,45 @@ public class UserRegistrationValidatorTest {
 		boolean result = validator.checkMobileNumber("9060567436");
 		Assert.assertFalse(result);
 	}
+	@Test
+	public void givenPassword_WhenProper_ShouldReturnTrue() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result = validator.checkPassword("Pedf$123s");
+		Assert.assertTrue(result);
+	}
+	
+	@Test
+	public void givenPassword_WhenShort_ShouldReturnFalse() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result = validator.checkPassword("Qwe12@");
+		Assert.assertFalse(result);
+	}
+	
+	@Test
+	public void givenPassword_WhenNoUpperCase_ShouldReturnFalse() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result = validator.checkPassword("asdf@123");
+		Assert.assertFalse(result);
+	}
+	
+	@Test
+	public void givenPassword_WhenNoNumericalDigit_ShouldReturnFalse() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result = validator.checkPassword("AsdfQwert@");
+		Assert.assertFalse(result);
+	}
+	
+	@Test
+	public void givenPassword_WhenNoSpecialCharacter_ShouldReturnFalse() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result = validator.checkPassword("Ayutwe123");
+		Assert.assertFalse(result);
+	}
+	
+	@Test
+	public void givenPassword_WhenMoreThanOneSpecialCharacter_ShouldReturnFalse() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result = validator.checkPassword("Poll@123$123");
+		Assert.assertFalse(result);
+	}
 }
