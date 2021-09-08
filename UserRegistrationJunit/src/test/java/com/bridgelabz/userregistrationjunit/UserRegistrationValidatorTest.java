@@ -57,4 +57,31 @@ public class UserRegistrationValidatorTest {
 		boolean result = validator.checkEmail("1abc?@gmail.com");
 		Assert.assertFalse(result);
 	}
+	@Test
+	public void givenMobileNumber_WhenProper_ShouldReturnTrue() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result = validator.checkMobileNumber("91 7864567340");
+		Assert.assertTrue(result);
+	}
+	
+	@Test
+	public void givenMobileNumber_WhenShort_ShouldReturnFalse() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result = validator.checkMobileNumber("91 6785678");
+		Assert.assertFalse(result);
+	}
+	
+	@Test
+	public void givenMobileNumber_WhenNoSpace_ShouldReturnFalse() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result = validator.checkMobileNumber("917865345689");
+		Assert.assertFalse(result);
+	}
+	
+	@Test
+	public void givenMobileNumber_WhenNoCountryCode_ShouldReturnFalse() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result = validator.checkMobileNumber("9060567436");
+		Assert.assertFalse(result);
+	}
 }
