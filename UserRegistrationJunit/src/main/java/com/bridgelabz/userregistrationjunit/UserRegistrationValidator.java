@@ -13,7 +13,7 @@ public class UserRegistrationValidator {
 		
 
 	static boolean checkMobileNumber(String number) {
-		Pattern pattern = Pattern.compile("^\\d{2}[\\s]\\d{10}");
+		Pattern pattern = Pattern.compile("[1-9][0-9][\\s][1-9][0-9]{9}");
 		Matcher matcher = pattern.matcher(number);
 		return matcher.matches();				
 	}
