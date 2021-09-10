@@ -23,116 +23,312 @@ public class UserRegistrationValidatorTest {
 	@Test
 	public void givenFirstName_WhenProper_ShouldReturnTrue() {
 		UserRegistrationValidator validator = new UserRegistrationValidator();	
-		boolean result = validator.checkFirstName("Arpitha");
-		Assert.assertTrue(result);
+		boolean result;
+		try {
+			result = validator.checkName("Arpitha");
+			Assert.assertTrue(result);
+		} catch (UserRegistrationException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
 	public void givenFirstName_WhenShort_ShouldReturnFalse() {
 		UserRegistrationValidator validator = new UserRegistrationValidator();	
-		boolean result = validator.checkFirstName("Ar");
-		Assert.assertFalse(result);
+		boolean result;
+		try {
+			result = validator.checkName("Ar");
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
+		
 	}
 	
 	@Test
 	public void givenFirstName_WhenUpperCaseMissing_ShouldReturnFalse() {
 		UserRegistrationValidator validator = new UserRegistrationValidator();	
-		boolean result = validator.checkFirstName("arpitha");
-		Assert.assertFalse(result);
+		boolean result;
+		try {
+			result = validator.checkName("arpitha");
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
+	@Test
+	public void givenFirstName_WhenNull_ShouldReturnFalse() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result;
+		try {
+			result = validator.checkName(null);
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_NULL, e.type);
+			System.out.println(e.getMessage());
+		}
+		
+	}
+	@Test
+	public void givenFirstName_WhenEmpty_ShouldReturnFalse() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result;
+		try {
+			result = validator.checkName("");
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_EMPTY, e.type);
+			System.out.println(e.getMessage());
+		}
+		
+	}
+	
 	@Test
 	public void givenLastName_WhenProper_ShouldReturnTrue() {
 		UserRegistrationValidator validator = new UserRegistrationValidator();	
-		boolean result = validator.checkLastName("Bhat");
-		Assert.assertTrue(result);
+		boolean result;
+		try {
+			result = validator.checkName("Bhat");
+			Assert.assertTrue(result);
+		} catch (UserRegistrationException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@Test
 	public void givenLastName_WhenShort_ShouldReturnFalse() {
 		UserRegistrationValidator validator = new UserRegistrationValidator();	
-		boolean result = validator.checkLastName("Bh");
-		Assert.assertFalse(result);
+		boolean result;
+		try {
+			result = validator.checkName("Bh");
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Test
 	public void givenLastName_WhenUpperCaseMissing_ShouldReturnFalse() {
 		UserRegistrationValidator validator = new UserRegistrationValidator();	
-		boolean result = validator.checkLastName("bhat");
-		Assert.assertFalse(result);
+		boolean result;
+		try {
+			result = validator.checkName("bhat");
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
+	}
+	@Test
+	public void givenLastName_WhenNull_ShouldReturnFalse() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result;
+		try {
+			result = validator.checkName(null);
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_NULL, e.type);
+			System.out.println(e.getMessage());
+		}
+		
+	}
+	@Test
+	public void givenLastName_WhenEmpty_ShouldReturnFalse() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result;
+		try {
+			result = validator.checkName("");
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_EMPTY, e.type);
+			System.out.println(e.getMessage());
+		}
+		
 	}
 	@Test
 	public void givenEmail_WhenValidOrInvalidEmailInput_ShouldReturnTrueOrFalse() {
 		UserRegistrationValidator userRegistration = new UserRegistrationValidator();
-	   	boolean result = userRegistration.checkEmail(email);
-	   	Assert.assertEquals(expectedOutput,result);
+		boolean result;
+		try {
+		   	result = userRegistration.checkEmail(email);
+		}catch(UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
+	}
+	@Test
+	public void givenEmail_WhenNull_ShouldReturnFalse() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result;
+		try {
+			result = validator.checkEmail(null);
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_NULL, e.type);
+			System.out.println(e.getMessage());
+		}
+		
 	}
 	@Test
 	public void givenMobileNumber_WhenProper_ShouldReturnTrue() {
 		UserRegistrationValidator validator = new UserRegistrationValidator();	
-		boolean result = validator.checkMobileNumber("91 7864567340");
-		Assert.assertTrue(result);
+		boolean result;
+		try {
+			result = validator.checkMobileNumber("91 7864567340");
+			Assert.assertTrue(result);
+		} catch (UserRegistrationException e) {
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void givenMobileNumber_WhenNull_ShouldReturnFalse() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result;
+		try {
+			result = validator.checkMobileNumber(null);
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_NULL, e.type);
+			System.out.println(e.getMessage());
+		}
+		
 	}
 	
 	@Test
 	public void givenMobileNumber_WhenShort_ShouldReturnFalse() {
 		UserRegistrationValidator validator = new UserRegistrationValidator();	
-		boolean result = validator.checkMobileNumber("91 6785678");
-		Assert.assertFalse(result);
+		boolean result;
+		try {
+			result = validator.checkMobileNumber("91 6785678");
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Test
 	public void givenMobileNumber_WhenNoSpace_ShouldReturnFalse() {
 		UserRegistrationValidator validator = new UserRegistrationValidator();	
-		boolean result = validator.checkMobileNumber("917865345689");
-		Assert.assertFalse(result);
+		boolean result;
+		try {
+			result = validator.checkMobileNumber("917865345689");
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Test
 	public void givenMobileNumber_WhenNoCountryCode_ShouldReturnFalse() {
 		UserRegistrationValidator validator = new UserRegistrationValidator();	
-		boolean result = validator.checkMobileNumber("9060567436");
-		Assert.assertFalse(result);
+		boolean result;
+		try {
+			result = validator.checkMobileNumber("9060567436");
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
+	}
+	@Test
+	public void givenMobileNumber_WhenEmpty_ShouldReturnFalse() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result;
+		try {
+			result = validator.checkMobileNumber("");
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_EMPTY, e.type);
+			System.out.println(e.getMessage());
+		}
+		
 	}
 	@Test
 	public void givenPassword_WhenProper_ShouldReturnTrue() {
 		UserRegistrationValidator validator = new UserRegistrationValidator();	
-		boolean result = validator.checkPassword("Pedf$123s");
-		Assert.assertTrue(result);
+		boolean result;
+		try {
+			result = validator.checkPassword("Pedf$123s");
+			Assert.assertTrue(result);
+		} catch (UserRegistrationException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
 	public void givenPassword_WhenShort_ShouldReturnFalse() {
 		UserRegistrationValidator validator = new UserRegistrationValidator();	
-		boolean result = validator.checkPassword("Qwe12@");
-		Assert.assertFalse(result);
+		boolean result;
+		try {
+			result = validator.checkPassword("Qwe12@");
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Test
 	public void givenPassword_WhenNoUpperCase_ShouldReturnFalse() {
 		UserRegistrationValidator validator = new UserRegistrationValidator();	
-		boolean result = validator.checkPassword("asdf@123");
-		Assert.assertFalse(result);
+		boolean result;
+		try {
+			result = validator.checkPassword("asdf@123");
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Test
 	public void givenPassword_WhenNoNumericalDigit_ShouldReturnFalse() {
 		UserRegistrationValidator validator = new UserRegistrationValidator();	
-		boolean result = validator.checkPassword("AsdfQwert@");
-		Assert.assertFalse(result);
+		boolean result;
+		try {
+			result = validator.checkPassword("AsdfQwert@");
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Test
 	public void givenPassword_WhenNoSpecialCharacter_ShouldReturnFalse() {
 		UserRegistrationValidator validator = new UserRegistrationValidator();	
-		boolean result = validator.checkPassword("Ayutwe123");
-		Assert.assertFalse(result);
+		boolean result;
+		try {
+			result = validator.checkPassword("Ayutwe123");
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Test
 	public void givenPassword_WhenMoreThanOneSpecialCharacter_ShouldReturnFalse() {
 		UserRegistrationValidator validator = new UserRegistrationValidator();	
-		boolean result = validator.checkPassword("Poll@123$123");
-		Assert.assertFalse(result);
+		boolean result;
+		try {
+			result = validator.checkPassword("Poll@123$123");
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
+	}
+	@Test
+	public void givenPassword_WhenNull_ShouldReturnFalse() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result;
+		try {
+			result = validator.checkPassword(null);
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_NULL, e.type);
+			System.out.println(e.getMessage());
+		}
+		
+	}
+	@Test
+	public void givenPassword_WhenEmpty_ShouldReturnFalse() {
+		UserRegistrationValidator validator = new UserRegistrationValidator();	
+		boolean result;
+		try {
+			result = validator.checkPassword("");
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_EMPTY, e.type);
+			System.out.println(e.getMessage());
+		}
+		
 	}
 	@Parameterized.Parameters
 	public static Collection input() {
