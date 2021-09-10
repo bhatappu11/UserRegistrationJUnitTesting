@@ -1,11 +1,11 @@
 package com.bridgelabz.userregistrationjunit;
 
 public class UserRegistrationException extends Exception{
-	enum exceptionType{
-		ENTERED_VALID,ENTERED_INVALID
+	enum ExceptionType{
+		ENTERED_NULL,ENTERED_INVALID,ENTERED_EMPTY
 	}
-	exceptionType type;
-	public UserRegistrationException(exceptionType type,String message) {
+	ExceptionType type;
+	public UserRegistrationException(ExceptionType type,String message) {
 		super(message);
 		this.type = type;
 	}
