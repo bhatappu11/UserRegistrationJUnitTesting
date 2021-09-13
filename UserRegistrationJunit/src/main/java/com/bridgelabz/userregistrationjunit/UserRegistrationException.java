@@ -1,6 +1,6 @@
 package com.bridgelabz.userregistrationjunit;
 
-public class UserRegistrationException extends Exception{
+public class UserRegistrationException extends RuntimeException{
 	enum ExceptionType{
 		ENTERED_NULL,ENTERED_INVALID,ENTERED_EMPTY
 	}

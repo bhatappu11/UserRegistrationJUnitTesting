@@ -7,7 +7,7 @@ import com.bridgelabz.userregistrationjunit.UserRegistrationException.ExceptionT
 
 public class UserRegistrationValidator {
 	
-	static boolean checkPassword(String password) throws UserRegistrationException {
+	static boolean checkPassword(String password) {
 		try {
 			if(password.length()==0) throw new UserRegistrationException(ExceptionType.ENTERED_EMPTY, "Password cannot be empty");
 			Pattern pattern = Pattern.compile("(?=.*[A-Z])(?=.*[0-9]).{8,}");
@@ -27,7 +27,7 @@ public class UserRegistrationValidator {
 	}
 		
 
-	static boolean checkMobileNumber(String number) throws UserRegistrationException {
+	static boolean checkMobileNumber(String number) {
 		try {
 			if(number.length()==0) throw new UserRegistrationException(ExceptionType.ENTERED_EMPTY, "Mobile number cannot be empty");
 			Pattern pattern = Pattern.compile("[1-9][0-9][\\s][1-9][0-9]{9}");
@@ -42,7 +42,7 @@ public class UserRegistrationValidator {
 		}
 	}
 
-	static boolean checkEmail(String email) throws UserRegistrationException {
+	static boolean checkEmail(String email) {
 		try {
 			if(email.length()==0) throw new UserRegistrationException(ExceptionType.ENTERED_EMPTY, "Email cannot be empty");
 			Pattern pattern = Pattern.compile("^abc[a-z0-9]*([+\\-_.][a-z0-9]{3})?@[a-z0-9]+\\.[a-z]{2,3}(\\.[a-z]{2,3})?$");
@@ -58,7 +58,7 @@ public class UserRegistrationValidator {
 	}
 
 
-	static boolean checkName(String name) throws UserRegistrationException {
+	static boolean checkName(String name) {
 		try {
 			if(name.length()==0) throw new UserRegistrationException(ExceptionType.ENTERED_EMPTY, "Name cannot be empty");
 			Pattern pattern = Pattern.compile("^[A-Z][a-z]{2,}$");
