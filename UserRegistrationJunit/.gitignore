@@ -1,17 +1,19 @@
 /bin/
 # Ignore Gradle project-specific cache directory
 .gradle
-.classpath
+lib/bin/
+Thumbs.db
+.DS_Store
+.gradle
+build/
+out/
+.idea
+.iml
+.ipr
+*.iws 
 .project
 .settings/
-.gradle/
-.gitattributes
-build.gradle
-settings.gradle
-gradlew
-gradlew.bat
-gradle/
-
+.classpath
 
 # Ignore Gradle build output directory
 build
